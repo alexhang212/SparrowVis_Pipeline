@@ -1,91 +1,66 @@
-# Sparrow Vis: A framework to analyse and annotate sparrow provisioning videos
+# Sparrow Vis Code
+This readme provide details for what each part of the pipeline does, to allow you to adapt and customize each part of it!
 
-Hi and welcome to SparrowVis!! This is the documentation and instructions to run and extract data from House Sparrow provisioning videos on Lundy. I will try to break it down and make it as easy as possible!
-
-Here is the pipeline and the general workflow:
+Quick reminder, here is the pipeline and the general workflow:
 1. Open source software called Deep Meerkat (Weinstein, 2018) to identify movement frames
 2. Process output and group frames into “events”
 3. Extract short video clips of the events
 4. Summarize processed videos into a biological meaningful “visit rate”
 
-The pipeline uses a mix of R and python, and requires a little bit of running code on the command line/terminal, but don’t be intimidated!
-
 ![Figures](/Graphics/DocumentationGraphic.png)
 
-## Installation Instructions
-The pipeline is unfortunately written for unix systems (linux/mac). To use the pipline on Windows, you will need a few extra steps. If you are a mac/ linux user, just scroll down and get started!
-
-### Windows Instructions
-You will need to get the ubuntu shell. I followed [this](https://www.youtube.com/watch?v=X-DHaQLrBi8&t) youtube video to set it up. It should be quick and easy! To test this, I used [Ubuntu 20.04 LTS](https://www.microsoft.com/en-us/p/ubuntu-2004-lts/9n6svws3rx71?activetab=pivot:overviewtab), so I recommend using that as well!
-
-Once you have the ubuntu terminal set up, you can then run the following to [access file explorer](https://devblogs.microsoft.com/commandline/whats-new-for-wsl-in-windows-10-version-1903/), which allows you to copy files to and from your windows system.
-
-```
-explorer.exe .
-```
-
-Finally, if you copy this current folder to your linux subsystem, you can follow the linux/mac instructions below and run the pipeline.
-
-### Linux/ Mac Instructions
-To install all software are packages required, you will first need to install Anaconda. Follow this [link](https://docs.anaconda.com/anaconda/install/index.html) and install it on your system. (If you are a windows user and just set up the ubuntu terminal from above, you should choose the "[Installing for Linux](https://docs.anaconda.com/anaconda/install/linux/) option!)
-
-Once anaconda is installed, you have to navigate to the SparrowVis_Pipeline/ folder using `cd`, and run the following to install all packages required:
-
-```
-conda create --file SparrowVis.yml
-```
-This creates something called a "virtual environment", which has the packages and the correct version of those packages for the pipeline to run! The virtual environment that was created should be call "SparrowVis".
-
-To activate the environment, you will need to run the following everytime you are running the pipeline.
-```
-conda activate SparrowVis
-```
 
 ## Running the Pipeline
-The following instructions 
+### 1. Running Deep Meerkat
 
-
-### File Management
-One important thing to note is that where and what you put under each folder **matters a lot** (mainly because I got lazy when writing the code). Generally, you want to put all the videos inside the **MeerkatInput/** folder, and you will get the results in the **Output/** folder. 
-
-### Running the Code
-Once you have everything set up, you are ready to go! **Make sure you run everything below in the Code/ directory** (you can do that by using `cd` to change directory to /SparrowVis_Pipeline/Code/)
-
-To run the pipeline for 1 video, use:
-```
-bash SamplePipeline.sh [video]
-```
-Where [video] is the path to the input video. For example, to run the pipeline for "VK0001", I would run 
-```
-bash SamplePipeline.sh ../MeerkatInput/VK0001.mp4
-```
-
-If you have a bunch of videos, I also provided a script that runs every video in a loop. So you can run them overnight! To run that, just run:
+Deep Meerkat is an open source software. [Here](https://github.com/bw4sz/DeepMeerkat) is the original github repository. To run deep meerkat, you have to run 
 
 ```
-bash SamplePipeline_Loop.sh
+python ../DeepMeerkat/DeepMeerkat/Meerkat.py --input [Video] --path_to_model ../DeepMeerkat/DeepMeerkat/model/ --output [Output]
+
 ```
 
-The script reads in all the files under **MeerkatInput/** and runs the pipline through it. Afterwards, the video will be moved to **RawVideos/** so you can keep track which videos were ran or not!
+With **[Video]** being the path to the input video and **[Output]** being the path to the output destination. Deep Meerkat outputs the .jpg images of the movement frames, **annotation.csv** that records all the movement frames and info, and lastly **parameters.csv** which saves important information regarding the video.
 
-### Intepreting Output
-If everything ran smoothly, you should get a bunch of short clips named EventX.mp4, with a csv called Short.csv under a folder with the video's name. Short.csv stores all the event names and timesteps, which is useful when doing manual annotations for the clips!
+Note that Deep Meerkat is quite slow, with approximately a 1:1 run time. This means that a 1 hour video will likely take around an hour to run. 
 
-Once all videos are processed, you can run the following to get automatic visit rates:
+### 2. Defining Events
+
+Next, the R script [ProcessFrameInfo.R](./ProcessFrameInfo.R) reads the **annotation.csv** output from Deep Meerkat and groups it into events. An event is defined as any cluster of movement frames that is at least 2 frames long and less than 40 frames apart. To run the script, use:
+
+```
+Rscript ProcessFrameInfo.R [VidName]
+```
+Where **[VidName]** is the name of the video without the .mp4 extension. The script will output a new dataframe called **Short.csv** within each of the output folders.
+
+### 3. Extracting Clips
+Next, the python script [ExtractFrames.py](./ExtractFrames.py) takes the events and timestamps from **Short.csv** from before, and writes seperate 7 second video files for each event. To run the script, run:
+
+```
+python ExtractFrames.py [VidName]
+```
+Where **[VidName]** is the name of the video without the .mp4 extension as above. Note that this script pulls the full video file from the RawVideos/ directory, so make sure the original video file is there. 
+
+### 4. Extracting Visit Rates
+Lastly, once all events are defined, the script [OrganizeOutput.R](./OrganizeOutput.R) takes all the files located under **Output/** and tally up the number of visit events detected for each video. To run it, type:
+
 ```
 Rscript OrganizeOutput.R
 ```
-
 This will create a csv file called "AutoVisitRate.csv" which stores counts the visits detected for each video and the effective observation time (see Nakagawa et al., 2007)
 
-## Common Errors
-- **"No such file or directory"**: Either you are not running the code under the Code/ directory, or the videos you inputted are not under MeerkatInput/. Solve this by checking where all the files are and make sure you `cd` to the Code/ directory before running anything
+## Running on the HPC cluster
+If you are more experienced with computational techniques and have access to the higher performance computing cluster in Imperial (or similar), I provided additional scripts that I used to run the pipeline on it. This would save more time because you can basically run the pipeline in parallel for multiple videos.
 
-- **"AttributeError: module 'tensorflow' has no attribute 'Session'"** or any **"module not found"** errors: You likely forgot to activate the virtual environment before running the code. Remember to run `conda activate SparrowVis`!
+To run Deep Meerkat, I used the script [RunMeerkat_bash.sh](./HPC/RunMeerkat_bash.sh),which checks if the script runs succesfully and moves the video file to the output only if it is succesful. This was due to a bug that prevents the code from running on the HPC cluster, and as of Nov 2021 (when I am writing this), this issue has still not been solved.
 
-- Empty short.csv and no clips in output folders. This is likely not an error, try double check annotations.csv (output from deepmeerkat). Likely no motion was detected throughout the video!
+To run the script, I used the `-J` argument to allow multiple videos to be ran at once. Sample:
 
-- If you are struggling or have lots of error, feel free to contact me! My affiliations are below.
+```
+qsub RunMeerkat_bash.sh -J 1-100
+```
+If you are trying to run the pipeline on a computing cluster and is having trouble, do not hesitate to contact me!! Good Luck!
+
 
 ## References
 - Nakagawa, S., Gillespie, D.O.S., Hatchwell, B.J., Burke, T., 2007. Predictable males and
