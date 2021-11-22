@@ -1,4 +1,4 @@
-# Sparrow Vis: A framework to analyse and annotate sparrow provisioning videos
+# Sparrow Vis: A pipeline to pre-process and analyse sparrow provisioning videos
 
 Hi and welcome to SparrowVis!! This is the documentation and instructions to run and extract data from House Sparrow provisioning videos on Lundy. I will try to break it down and make it as easy as possible!
 
