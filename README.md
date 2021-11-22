@@ -42,7 +42,7 @@ conda activate SparrowVis
 ```
 
 ## Running the Pipeline
-The following instructions 
+The following instructions should provide everything you need to run the pipeline. If you want to dive into what each script does, go look at the [readme from the Code directory](https://github.com/alexhang212/SparrowVis_Pipeline/tree/master/Code#readme)
 
 
 ### File Management
