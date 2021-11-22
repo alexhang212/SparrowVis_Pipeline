@@ -1,4 +1,4 @@
-# Sparrow Vis Code
+# SparrowVis Code
 This readme provide details for what each part of the pipeline does, to allow you to adapt and customize each part of it!
 
 Quick reminder, here is the pipeline and the general workflow:
@@ -54,7 +54,7 @@ If you are more experienced with computational techniques and have access to the
 
 To run Deep Meerkat, I used the script [RunMeerkat_bash.sh](./HPC/RunMeerkat_bash.sh),which checks if the script runs succesfully and moves the video file to the output only if it is succesful. This was due to a bug that prevents the code from running on the HPC cluster, and as of Nov 2021 (when I am writing this), this issue has still not been solved.
 
-To run the script, I used the `-J` argument to allow multiple videos to be ran at once. Sample:
+To run the script, I used the `-J` argument to allow multiple videos to be ran at once. Sample for running 100 videos at once:
 
 ```
 qsub RunMeerkat_bash.sh -J 1-100
