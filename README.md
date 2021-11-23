@@ -1,6 +1,8 @@
 # Sparrow Vis: A pipeline to pre-process and analyse sparrow provisioning videos
 
-Hi and welcome to SparrowVis!! This is the documentation and instructions to run and extract data from House Sparrow provisioning videos on Lundy. I will try to break it down and make it as easy as possible!
+Hi and welcome to SparrowVis!! This is the documentation and instructions to run and extract data from House Sparrow provisioning videos on Lundy. I will try to break it down and make it as easy as possible.
+
+For a more readable version of this documentation, you can visit: https://github.com/alexhang212/SparrowVis_Pipeline 
 
 Here is the pipeline and the general workflow:
 1. Open source software called Deep Meerkat (Weinstein, 2018) to identify movement frames
@@ -13,10 +15,12 @@ The pipeline uses a mix of R and python, and requires a little bit of running co
 ![Figures](/Graphics/DocumentationGraphic.png)
 
 ## Installation Instructions
+First thing's first, make sure you have the SparrowVis_Pipeline folder with everything included. On the github repository, the DeepMeerkat/ folder is not included, so make sure you have that by downloading from the original [repository](https://github.com/bw4sz/DeepMeerkat). If you accessed the files by downloading through the Lundy Dropbox/google drive, you should be all set! 
+
 The pipeline is unfortunately written for unix systems (linux/mac). To use the pipline on Windows, you will need a few extra steps. If you are a mac/ linux user, just scroll down and get started!
 
 ### Windows Instructions
-You will need to get the ubuntu shell. I followed [this](https://www.youtube.com/watch?v=X-DHaQLrBi8&t) youtube video to set it up. It should be quick and easy! To test this, I used [Ubuntu 20.04 LTS](https://www.microsoft.com/en-us/p/ubuntu-2004-lts/9n6svws3rx71?activetab=pivot:overviewtab), so I recommend using that as well!
+You will need to get the ubuntu shell. I followed [this](https://www.youtube.com/watch?v=X-DHaQLrBi8&t) youtube video to set it up. It should be quick and easy! To test this, I used [Ubuntu 20.04 LTS](https://www.microsoft.com/en-us/p/ubuntu-2004-lts/9n6svws3rx71?activetab=pivot:overviewtab), so I recommend using that as well.
 
 Once you have the ubuntu terminal set up, you can then run the following to [access file explorer](https://devblogs.microsoft.com/commandline/whats-new-for-wsl-in-windows-10-version-1903/), which allows you to copy files to and from your windows system.
 
