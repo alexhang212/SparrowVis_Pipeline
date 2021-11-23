@@ -104,7 +104,7 @@ detection. Methods Ecol. Evol. 9, 1435–1441.
 Alex Chan Hoi Hang  
 the.alex.chan2@gmail.com/ 
 hhc4317@ic.ac.uk  
-MRes Computational Methods in Ecology and Evolution 2021
+MRes Computational Methods in Ecology and Evolution 2021  
 Department of Life Sciences  
 Imperial College Silwood Park  
 UK. SL5 7PY  
