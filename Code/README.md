@@ -31,10 +31,10 @@ Next, the R script [ProcessFrameInfo.R](./ProcessFrameInfo.R) reads the **annota
 ```
 Rscript ProcessFrameInfo.R [VidName]
 ```
-Where **[VidName]** is the name of the video without the .mp4 extension. The script will output a new dataframe called **Short.csv** within each of the output folders.
+Where **[VidName]** is the name of the video without the .mp4 extension. The script will output a new dataframe called **FramesShort.csv** within each of the output folders.
 
 ### 3. Extracting Clips
-Next, the python script [ExtractFrames.py](./ExtractFrames.py) takes the events and timestamps from **Short.csv** from before, and writes seperate 7 second video files for each event. To run the script, run:
+Next, the python script [ExtractFrames.py](./ExtractFrames.py) takes the events and timestamps from **FramesShort.csv** from before, and writes seperate 7 second video files for each event. To run the script, run:
 
 ```
 python ExtractFrames.py [VidName]
@@ -47,7 +47,7 @@ Lastly, once all events are defined, the script [OrganizeOutput.R](./OrganizeOut
 ```
 Rscript OrganizeOutput.R
 ```
-This will create a csv file called "AutoVisitRate.csv" which stores counts the visits detected for each video and the effective observation time (see Nakagawa et al., 2007)
+This will create a csv file called **AutoVisitRate.csv** which counts the visits detected for each video and the effective observation time (see Nakagawa et al., 2007)
 
 ## Running on the HPC cluster
 If you are more experienced with computational techniques and have access to the higher performance computing cluster in Imperial (or similar), I provided additional scripts that I used to run the pipeline on it. This would save more time because you can basically run the pipeline in parallel for multiple videos.
@@ -75,7 +75,7 @@ detection. Methods Ecol. Evol. 9, 1435–1441.
 Alex Chan Hoi Hang  
 the.alex.chan2@gmail.com/ 
 hhc4317@ic.ac.uk  
-MRes Computational Methods in Ecology and Evolution  
+MRes Computational Methods in Ecology and Evolution 2021
 Department of Life Sciences  
 Imperial College Silwood Park  
 UK. SL5 7PY  

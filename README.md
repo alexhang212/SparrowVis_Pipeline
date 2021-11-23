@@ -64,7 +64,7 @@ Where [video] is the path to the input video. For example, to run the pipeline f
 bash SamplePipeline.sh ../MeerkatInput/VK0001.mp4
 ```
 
-If you have a bunch of videos, I also provided a script that runs every video in a loop. So you can run them overnight! To run that, just run:
+If you have a bunch of videos, I also provided a script that runs every video in a loop. So you can run them overnight! To run that, just do:
 
 ```
 bash SamplePipeline_Loop.sh
@@ -73,23 +73,23 @@ bash SamplePipeline_Loop.sh
 The script reads in all the files under **MeerkatInput/** and runs the pipline through it. Afterwards, the video will be moved to **RawVideos/** so you can keep track which videos were ran or not!
 
 ### Intepreting Output
-If everything ran smoothly, you should get a bunch of short clips named EventX.mp4, with a csv called Short.csv under a folder with the video's name. Short.csv stores all the event names and timesteps, which is useful when doing manual annotations for the clips!
+If everything ran smoothly, you should get a bunch of short clips named EventX.mp4, with a csv called FramesShort.csv under a folder with the video's name. FramesShort.csv stores all the event names and timesteps, which is useful when doing manual annotations for the clips.
 
 Once all videos are processed, you can run the following to get automatic visit rates:
 ```
 Rscript OrganizeOutput.R
 ```
 
-This will create a csv file called "AutoVisitRate.csv" which stores counts the visits detected for each video and the effective observation time (see Nakagawa et al., 2007)
+This will create a csv file called "AutoVisitRate.csv" which counts the visits detected for each video and the effective observation time (see Nakagawa et al., 2007)
 
 ## Common Errors
 - **"No such file or directory"**: Either you are not running the code under the Code/ directory, or the videos you inputted are not under MeerkatInput/. Solve this by checking where all the files are and make sure you `cd` to the Code/ directory before running anything
 
 - **"AttributeError: module 'tensorflow' has no attribute 'Session'"** or any **"module not found"** errors: You likely forgot to activate the virtual environment before running the code. Remember to run `conda activate SparrowVis`!
 
-- Empty short.csv and no clips in output folders. This is likely not an error, try double check annotations.csv (output from deepmeerkat). Likely no motion was detected throughout the video!
+- Empty FramesShort.csv and no clips in output folders. This is likely not an error, try double check annotations.csv (output from deepmeerkat). Likely no motion was detected throughout the video!
 
-- If you are struggling or have lots of error, feel free to contact me! My affiliations are below.
+- If you are struggling or have lots of error, feel free to contact me! My contact info can be found below.
 
 ## References
 - Nakagawa, S., Gillespie, D.O.S., Hatchwell, B.J., Burke, T., 2007. Predictable males and
@@ -104,7 +104,7 @@ detection. Methods Ecol. Evol. 9, 1435–1441.
 Alex Chan Hoi Hang  
 the.alex.chan2@gmail.com/ 
 hhc4317@ic.ac.uk  
-MRes Computational Methods in Ecology and Evolution  
+MRes Computational Methods in Ecology and Evolution 2021
 Department of Life Sciences  
 Imperial College Silwood Park  
 UK. SL5 7PY  
