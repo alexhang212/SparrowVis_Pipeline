@@ -7,7 +7,7 @@ Quick reminder, here is the pipeline and the general workflow:
 3. Extract short video clips of the events
 4. Summarize processed videos into a biological meaningful “visit rate”
 
-![Figures](/Graphics/DocumentationGraphic.png)
+![Figures](../Graphics/DocumentationGraphic.png)
 
 
 ## Running the Pipeline
