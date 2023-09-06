@@ -36,7 +36,7 @@ To install all software are packages required, you will first need to install An
 Once anaconda is installed, you have to navigate to the SparrowVis_Pipeline/ folder using `cd`, and run the following to install all packages required:
 
 ```
-conda create --file SparrowVis.yml
+conda env create --file SparrowVis.yml
 ```
 This creates something called a "virtual environment", which has the packages and the correct version of those packages for the pipeline to run! The virtual environment that was created should be call "SparrowVis".
 
