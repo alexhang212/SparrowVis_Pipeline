@@ -17,18 +17,19 @@ The pipeline uses a mix of R and python, and requires a little bit of running co
 ## Installation Instructions
 First thing's first, make sure you have the SparrowVis_Pipeline folder with everything included. On the github repository, the DeepMeerkat/ folder is not included, so make sure you have that by downloading from the original [repository](https://github.com/bw4sz/DeepMeerkat). If you accessed the files by downloading through the Lundy Dropbox/google drive, you should be all set! 
 
-The pipeline is unfortunately written for unix systems (linux/mac). To use the pipline on Windows, you will need a few extra steps. If you are a mac/ linux user, just scroll down and get started!
-
 ### Windows Instructions
-You will need to get the ubuntu shell. I followed [this](https://www.youtube.com/watch?v=X-DHaQLrBi8&t) youtube video to set it up. It should be quick and easy! To test this, I used [Ubuntu 20.04 LTS](https://www.microsoft.com/en-us/p/ubuntu-2004-lts/9n6svws3rx71?activetab=pivot:overviewtab), so I recommend using that as well.
+First, download anaconda(https://www.anaconda.com/) or [miniconda](https://docs.conda.io/projects/miniconda/en/latest/miniconda-install.html). After download and installation, open the Anaconda Prompt (search for it in the search bar). After that, navigate to the SparrowVis_Pipeline folder using `cd`.
 
-Once you have the ubuntu terminal set up, you can then run the following to [access file explorer](https://devblogs.microsoft.com/commandline/whats-new-for-wsl-in-windows-10-version-1903/), which allows you to copy files to and from your windows system.
-
+Then run:
 ```
-explorer.exe .
+conda env create --file SparrowVis_Win.yml
 ```
+This creates something called a "virtual environment", which has the packages and the correct version of those packages for the pipeline to run! The virtual environment that was created should be call "SparrowVis".
 
-Finally, if you copy this current folder to your linux subsystem, you can follow the linux/mac instructions below and run the pipeline.
+To activate the environment, you will need to run the following everytime you are running the pipeline.
+```
+conda activate SparrowVis
+```
 
 ### Linux/ Mac Instructions
 To install all software are packages required, you will first need to install Anaconda. Follow this [link](https://docs.anaconda.com/anaconda/install/index.html) and install it on your system. (If you are a windows user and just set up the ubuntu terminal from above, you should choose the "[Installing for Linux](https://docs.anaconda.com/anaconda/install/linux/) option!)

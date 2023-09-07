@@ -32,7 +32,7 @@ def RunPipeline(VideoPath):
 
     ###Get Clips:
     print("#####Get Clips:#####")
-    result = subprocess.run(["Rscript","ExtractFrames.py",BaseName ])
+    result = subprocess.run(["python","ExtractFrames.py",BaseName ])
 
     print("#####  FINISH  #####")
 

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Extract 7 second event clips from Meerkat Output and Raw Videos"""
 
 import subprocess
