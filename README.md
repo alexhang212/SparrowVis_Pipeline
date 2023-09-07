@@ -58,17 +58,17 @@ Once you have everything set up, you are ready to go! **Make sure you run everyt
 
 To run the pipeline for 1 video, use:
 ```
-bash SamplePipeline.sh [video]
+python RunPipeline.py --path [video]
 ```
 Where [video] is the path to the input video. For example, to run the pipeline for "VK0001", I would run 
 ```
-bash SamplePipeline.sh ../MeerkatInput/VK0001.mp4
+python RunPipeline.py --path ../MeerkatInput/VK0001.mp4
 ```
 
-If you have a bunch of videos, I also provided a script that runs every video in a loop. So you can run them overnight! To run that, just do:
+If you have a bunch of videos, there is also a loop mode that runs every video in a loop. So you can run them overnight! To run that, just add the `--loop` key:
 
 ```
-bash SamplePipeline_Loop.sh
+python RunPipeline.py --path ../MeerkatInput/ --loop
 ```
 
 The script reads in all the files under **MeerkatInput/** and runs the pipline through it. Afterwards, the video will be moved to **RawVideos/** so you can keep track which videos were ran or not!
