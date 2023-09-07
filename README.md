@@ -18,7 +18,7 @@ The pipeline uses a mix of R and python, and requires a little bit of running co
 First thing's first, make sure you have the SparrowVis_Pipeline folder with everything included. On the github repository, the DeepMeerkat/ folder is not included, so make sure you have that by downloading from the original [repository](https://github.com/bw4sz/DeepMeerkat). If you accessed the files by downloading through the Lundy Dropbox/google drive, you should be all set! 
 
 ### Windows Instructions
-First, download anaconda(https://www.anaconda.com/) or [miniconda](https://docs.conda.io/projects/miniconda/en/latest/miniconda-install.html). After download and installation, open the Anaconda Prompt (search for it in the search bar). After that, navigate to the SparrowVis_Pipeline folder using `cd`.
+First, download [anaconda](https://www.anaconda.com/) or [miniconda](https://docs.conda.io/projects/miniconda/en/latest/miniconda-install.html). After download and installation, open the Anaconda Prompt (search for it in the search bar). After that, navigate to the SparrowVis_Pipeline folder using `cd`.
 
 Then run:
 ```
